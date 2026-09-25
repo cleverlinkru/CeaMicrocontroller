@@ -6,13 +6,14 @@ use std.textio.all;
 
 entity rom is
     generic (
-        INIT_FILE : string := "mem/rom.mem"
+        INIT_FILE  : string := "mem/rom.mem";
+        WRITE_FILE : string := ""
     );
     port (
-        addr         : in  std_logic_vector(7 downto 0);
-        data_in      : in  std_logic_vector(7 downto 0);
-        write_strobe : in  std_logic;
-        data         : out std_logic_vector(7 downto 0)
+        addr       : in  std_logic_vector(7 downto 0);
+        write_data : in  std_logic_vector(7 downto 0);
+        write_en   : in  std_logic;
+        read_data  : out std_logic_vector(7 downto 0)
     );
 end entity rom;
 
@@ -44,17 +45,21 @@ architecture gates of rom is
     type s_out_bits_t is array(0 to 7) of std_logic_vector(255 downto 0);
     signal s_out_bits : s_out_bits_t;
 begin
-    process(write_strobe)
+    process(write_en)
         file f            : text;
         variable l        : line;
         variable next_mem : mem_t;
     begin
-        if rising_edge(write_strobe) then
+        if rising_edge(write_en) then
             next_mem := s_mem;
-            next_mem(to_integer(unsigned(addr))) := data_in;
+            next_mem(to_integer(unsigned(addr))) := write_data;
             s_mem <= next_mem;
 
-            file_open(f, INIT_FILE, write_mode);
+            if WRITE_FILE = "" then
+                file_open(f, INIT_FILE, write_mode);
+            else
+                file_open(f, WRITE_FILE, write_mode);
+            end if;
             for i in 0 to 255 loop
                 hwrite(l, next_mem(i));
                 writeline(f, l);
@@ -85,7 +90,7 @@ begin
         u_or255: entity work.or255
             port map(
                 a => s_out_bits(j),
-                y => data(j)
+                y => read_data(j)
             );
     end generate;
 end architecture gates;
