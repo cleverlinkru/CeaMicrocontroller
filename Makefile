@@ -9,12 +9,13 @@ VCD_FLAGS := --vcd=$(BUILD_DIR)/wave.vcd --stop-time=1000ns
 RTL_SOURCES := \
 	$(RTL_DIR)/and4.vhd \
 	$(RTL_DIR)/and8.vhd \
+	$(RTL_DIR)/d_latch.vhd \
 	$(RTL_DIR)/or255.vhd \
 	$(RTL_DIR)/address_to_select_8.vhd \
 	$(RTL_DIR)/rom.vhd \
 	$(RTL_DIR)/cea_microcontroller.vhd
 
-MODULES := address_to_select_8 and4 and8 or255 rom cea_microcontroller
+MODULES := address_to_select_8 and4 and8 d_latch or255 rom cea_microcontroller
 
 .PHONY: all test clean wave wave-address wave-cea $(MODULES)
 
