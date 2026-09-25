@@ -12,7 +12,7 @@ end entity ram;
 
 architecture gates of ram is
     signal s_sel : std_logic_vector(255 downto 0);
-    signal s_byte_sync : std_logic_vector(0 to 255);
+    signal s_byte_sync : std_logic_vector(255 downto 0);
     type s_mem_t is array (0 to 255) of std_logic_vector(7 downto 0);
     signal s_mem : s_mem_t;
     type s_out_t is array (0 to 7) of std_logic_vector(255 downto 0);

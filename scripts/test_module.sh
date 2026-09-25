@@ -14,8 +14,9 @@ RTL_SOURCES=(
     "${RTL_DIR}/and4.vhd"
     "${RTL_DIR}/and8.vhd"
     "${RTL_DIR}/d_latch.vhd"
-    "${RTL_DIR}/or255.vhd"
+    "${RTL_DIR}/or256.vhd"
     "${RTL_DIR}/address_to_select_8.vhd"
+    "${RTL_DIR}/ram.vhd"
     "${RTL_DIR}/rom.vhd"
     "${RTL_DIR}/cea_microcontroller.vhd"
 )
