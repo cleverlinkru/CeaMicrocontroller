@@ -37,6 +37,9 @@ architecture gates of rom is
 
     signal s_mem : mem_t;
     signal s_sel : std_logic_vector(255 downto 0);
+    signal s_out: mem_t;
+    type s_out_bits_t is array(0 to 7) of std_logic_vector(255 downto 0);
+    signal s_out_bits : s_out_bits_t;
 begin
     gen_word: for i in 0 to 255 generate
         gen_bit: for j in 0 to 7 generate
@@ -49,4 +52,20 @@ begin
             addr => addr,
             sel  => s_sel
         );
+    
+    gen_out: for i in 0 to 255 generate
+        gen_out_bit: for j in 0 to 7 generate
+            s_out(i)(j) <= s_sel(i) and s_mem(i)(j);
+        end generate;
+    end generate;
+
+    gen_data: for i in 0 to 255 generate
+        gen_data_bit: for j in 0 to 7 generate
+            u_or255: entity work.or255
+                port map(
+                    a => s_out_bits(j),
+                    y => data(j)
+                );
+        end generate;
+    end generate;
 end architecture gates;

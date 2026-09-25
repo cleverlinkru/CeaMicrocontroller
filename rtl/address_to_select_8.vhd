@@ -32,15 +32,8 @@ begin
     gen_sel: for i in 0 to 255 generate
         u_and8: entity work.and8
             port map (
-                a(0) => sel_in(i)(0),
-                a(1) => sel_in(i)(1),
-                a(2) => sel_in(i)(2),
-                a(3) => sel_in(i)(3),
-                a(4) => sel_in(i)(4),
-                a(5) => sel_in(i)(5),
-                a(6) => sel_in(i)(6),
-                a(7) => sel_in(i)(7),
-                y    => sel(i)
+                a => sel_in(i),
+                y => sel(i)
             );
     end generate;
 end architecture gates;
