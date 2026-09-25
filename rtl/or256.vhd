@@ -1,14 +1,14 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity or255 is
+entity or256 is
     port (
         a : in  std_logic_vector(255 downto 0);
         y : out std_logic
     );
-end entity or255;
+end entity or256;
 
-architecture gates of or255 is
+architecture gates of or256 is
     signal l1 : std_logic_vector(127 downto 0);
     signal l2 : std_logic_vector(63 downto 0);
     signal l3 : std_logic_vector(31 downto 0);

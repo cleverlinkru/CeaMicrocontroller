@@ -1,14 +1,14 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity or255_tb is
-end entity or255_tb;
+entity or256_tb is
+end entity or256_tb;
 
-architecture sim of or255_tb is
+architecture sim of or256_tb is
     signal a : std_logic_vector(255 downto 0) := (others => '0');
     signal y : std_logic;
 begin
-    dut: entity work.or255
+    dut: entity work.or256
         port map (
             a => a,
             y => y
