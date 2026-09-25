@@ -14,7 +14,7 @@ RTL_SOURCES := \
 	$(RTL_DIR)/rom.vhd \
 	$(RTL_DIR)/cea_microcontroller.vhd
 
-MODULES := address_to_select_8 and4 and8 or255 cea_microcontroller
+MODULES := address_to_select_8 and4 and8 or255 rom cea_microcontroller
 
 .PHONY: all test clean wave wave-address wave-cea $(MODULES)
 
