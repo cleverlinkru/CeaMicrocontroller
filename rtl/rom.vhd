@@ -87,7 +87,7 @@ begin
     end generate;
 
     gen_data: for j in 0 to 7 generate
-        u_or255: entity work.or255
+        u_or256: entity work.or256
             port map(
                 a => s_out_bits(j),
                 y => read_data(j)
